@@ -86,7 +86,7 @@
 Убедитесь, что у вас установлен Python (версии 3.8 или выше). Затем установите необходимые зависимости:
 
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn Pillow adjustText
+pip install -r requirements.txt
 ```
 
 ### 2. Клонирование репозитория
