@@ -108,17 +108,17 @@ def create_bump(metric_cols, title, unit, filename, limit, extra_src):
             fontsize=10.5, fontweight='bold', color='#2C3E50',
             bbox=dict(boxstyle='round,pad=1.0', facecolor='#F8F9F9', edgecolor='#D5DBDB', alpha=0.95), zorder=7)
 
-    fig.suptitle(title, fontsize=22, fontweight='bold', x=0.5, y=0.95, ha='center')
+    # fig.suptitle(title, fontsize=22, fontweight='bold', x=0.5, y=0.95, ha='center')
     add_source(fig, extra_src)
-    plt.subplots_adjust(left=0.08, right=0.76, top=0.88, bottom=0.12)
+    plt.subplots_adjust(left=0.08, right=0.76, top=0.98, bottom=0.12)
     plt.savefig(filename, dpi=300)
     plt.close()
 
 if __name__ == "__main__":
     # Экономика: FDI + Инфраструктура (USD)
     econ_metrics = ['dev_03_fdi_usd', 'dev_02_infrastructure_usd']
-    create_bump(econ_metrics, 'Эволюция экономического влияния (FDI + Инфраструктура)', 'млрд $', '3_Rank_Invest.jpg', 10, "IMF, AidData")
+    create_bump(econ_metrics, 'Эволюция экономического влияния (FDI + Инфраструктура)', 'млрд $', 'Rank_Invest.jpg', 10, "IMF, AidData")
     
     # Безопасность: Только TIV (жесткая сила)
     sec_metrics = ['sec_01_arms_transfer_tiv']
-    create_bump(sec_metrics, 'Эволюция военного сотрудничества (GSI)', 'TIV', '4_Rank_Arms.jpg', 5, "SIPRI")
+    create_bump(sec_metrics, 'Эволюция военного сотрудничества (GSI)', 'TIV', 'Rank_Arms.jpg', 5, "SIPRI")

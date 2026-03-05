@@ -37,7 +37,7 @@ if df is not None:
         ax.set_ylabel('Средний индекс вовлеченности' if ax == ax1 else '')
         ax.get_legend().remove()
 
-    plt.suptitle('Сравнение стратегий: Морские vs Сухопутные соседи (До и После 2021)', fontsize=18, fontweight='bold', y=0.98)
+    # plt.suptitle('Сравнение стратегий: Морские vs Сухопутные соседи (До и После 2021)', fontsize=18, fontweight='bold', y=0.98)
     
     # Общая легенда
     from matplotlib.patches import Patch
@@ -51,7 +51,7 @@ if df is not None:
                bbox_to_anchor=(0.5, 0.05), frameon=True)
     
     add_source(fig)
-    plt.tight_layout(rect=[0, 0.12, 1, 0.92])
+    plt.tight_layout(rect=[0, 0.12, 1, 0.99])
     
-    plt.savefig('12_Land_vs_Sea_Comp.jpg', dpi=300)
-    print("Готов 12_Land_vs_Sea_Comp.jpg")
+    plt.savefig('Land_vs_Sea_Comp.jpg', dpi=300)
+    print("Готов 1Land_vs_Sea_Comp.jpg")

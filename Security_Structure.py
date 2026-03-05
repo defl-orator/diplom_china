@@ -49,11 +49,11 @@ if df is not None:
     ax.invert_yaxis() # Сверху вниз
     
     ax.set_xlabel('Нормированный индекс активности (0-1)', fontweight='bold')
-    ax.set_title('Структура безопасности: Торговля vs. Дипломатия', fontsize=16, fontweight='bold')
-    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18), 
+    # ax.set_title('Структура безопасности: Торговля vs. Дипломатия', fontsize=16, fontweight='bold')
+    ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
             ncol=2, frameon=True)
     add_source(fig)
-    plt.tight_layout(rect=[0, 0.15, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
     
     # Добавляем текстовые подписи значений (Сырые данные)
     for i, (idx, row) in enumerate(top_10.iterrows()):
@@ -75,7 +75,7 @@ if df is not None:
     add_source(fig)
     plt.tight_layout(rect=[0, 0.05, 1, 0.95])
     
-    filename = '8_Security_Structure.jpg'
+    filename = 'Security_Structure.jpg'
     plt.savefig(filename, dpi=300)
     plt.close()
     print(f"Готово! Файл сохранен как {filename}")

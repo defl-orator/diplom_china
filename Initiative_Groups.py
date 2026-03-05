@@ -36,8 +36,7 @@ def get_cartesian(r, alpha_deg):
 
 def plot_circular_groups():
     fig, ax = plt.subplots(figsize=(18, 18))
-    fig.suptitle("Консенсус пограничных стран по Глобальным Инициативам КНР (2021-2024)", 
-                 fontsize=28, fontweight='bold', y=0.95)
+    # fig.suptitle("Консенсус пограничных стран по Глобальным Инициативам КНР (2021-2024)", fontsize=28, fontweight='bold', y=0.95)
 
     ax.set_xlim(-12, 12)
     ax.set_ylim(-12, 12)
@@ -99,8 +98,8 @@ def plot_circular_groups():
 
     add_source(fig, SITE_SOURCES, use_default=False)
     
-    plt.subplots_adjust(left=0.05, right=0.95, top=0.9, bottom=0.1)
-    plt.savefig("19_Initiative_Consensus.jpg", dpi=300)
+    plt.subplots_adjust(left=0.05, right=0.95, top=0.99, bottom=0.1)
+    plt.savefig("Initiative_Consensus.jpg", dpi=300)
     plt.close()
 
 if __name__ == "__main__":

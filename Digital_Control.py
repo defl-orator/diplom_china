@@ -23,11 +23,11 @@ if df is not None:
 
     ax = pivot_df.plot(kind='barh', figsize=(12, 8), color=['#BDC3C7', '#8E44AD'], width=0.8)
     
-    plt.title('Технологии слежения (Surveillance): Сравнение среднегодовых затрат', fontsize=16, fontweight='bold')
+    # plt.title('Технологии слежения (Surveillance): Сравнение среднегодовых затрат', fontsize=16, fontweight='bold')
     plt.xlabel('Средний объем проектов в год (млн USD)', fontweight='bold')
     plt.ylabel('')
     
     plt.legend(loc='lower center', bbox_to_anchor=(0.5, -0.15), ncol=2, frameon=True)
     add_source(plt.gcf())
-    plt.tight_layout(rect=[0, 0.1, 1, 0.95])
-    plt.savefig('9_Digital_Surveillance_Comp.jpg', dpi=300)
+    plt.tight_layout(rect=[0, 0.1, 1, 0.99])
+    plt.savefig('Digital_Surveillance_Comp.jpg', dpi=300)

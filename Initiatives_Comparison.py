@@ -29,7 +29,7 @@ if df is not None:
     ax.set_ylabel('Средний индекс активности', fontweight='bold')
     
     # Скорректированный заголовок согласно данным
-    ax.set_title('Смена парадигмы: Динамика приоритетов после 2021 г.', fontsize=16, fontweight='bold', pad=25)
+    # ax.set_title('Смена парадигмы: Динамика приоритетов после 2021 г.', fontsize=16, fontweight='bold', pad=25)
     
     ax.set_xticks(x)
     ax.set_xticklabels(metric_names, fontsize=12, fontweight='bold')
@@ -56,7 +56,7 @@ if df is not None:
 
     add_source(fig)
     
-    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
     
-    plt.savefig('17_Initiatives_Comparison.jpg', dpi=300)
-    print("Сохранен 17_Initiatives_Comparison.jpg ")
+    plt.savefig('Initiatives_Comparison.jpg', dpi=300)
+    print("Сохранен Initiatives_Comparison.jpg ")

@@ -94,7 +94,7 @@ if df is not None:
     ax.text(1.03, 0.5, "\n".join(info), transform=ax.transAxes, va='center', ha='left', fontsize=10.5, fontweight='bold',
             bbox=dict(boxstyle='round,pad=1.0', facecolor='#F8F9F9', edgecolor='#D5DBDB', alpha=0.95), zorder=10)
 
-    fig.suptitle('Эволюция гуманитарного сотрудничества (GCI)', fontsize=22, fontweight='bold', x=0.5, y=0.95, ha='center')
+    # fig.suptitle('Эволюция гуманитарного сотрудничества (GCI)', fontsize=22, fontweight='bold', x=0.5, y=0.95, ha='center')
     add_source(fig, "AidData, NBR")
-    plt.subplots_adjust(left=0.08, right=0.76, top=0.88, bottom=0.12)
-    plt.savefig('5_Rank_Humanitarian.jpg', dpi=300)
+    plt.subplots_adjust(left=0.08, right=0.76, top=0.98, bottom=0.12)
+    plt.savefig('Rank_Humanitarian.jpg', dpi=300)

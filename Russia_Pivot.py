@@ -73,11 +73,11 @@ if df is not None:
     fig.legend(handles=legend_elements, loc='lower center', ncol=2, 
                bbox_to_anchor=(0.5, 0.08), fontsize=12, frameon=True)
 
-    plt.suptitle('Россия 2024: Трансформация взаимодействия', fontsize=18, fontweight='bold', y=0.98)
+    # plt.suptitle('Россия 2024: Трансформация взаимодействия', fontsize=18, fontweight='bold', y=0.98)
     add_source(fig)
     
     # Увеличиваем нижний отступ (bottom=0.15), чтобы легенда не наезжала на Source
-    plt.tight_layout(rect=[0, 0.15, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.15, 1, 0.99])
     
-    plt.savefig('18_Russia_Pivot.jpg', dpi=300)
-    print("Сохранен 18_Russia_Pivot.jpg")
+    plt.savefig('Russia_Pivot.jpg', dpi=300)
+    print("Сохранен Russia_Pivot.jpg")

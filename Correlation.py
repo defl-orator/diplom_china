@@ -27,9 +27,9 @@ if df is not None:
     sns.heatmap(corr_data, annot=True, cmap='coolwarm', center=0, fmt=".2f",
                 linewidths=1, linecolor='white')
     
-    plt.title('Взаимосвязь инструментов влияния КНР', fontsize=16, fontweight='bold')
+    # plt.title('Взаимосвязь инструментов влияния КНР', fontsize=16, fontweight='bold')
     plt.xticks(rotation=45, ha='right')
     add_source(plt.gcf())
-    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
     plt.savefig('5_Correlation.jpg', dpi=300)
-    print("Сохранен 5_Correlation.jpg")
+    print("Сохранен Correlation.jpg")

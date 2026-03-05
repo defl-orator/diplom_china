@@ -22,25 +22,27 @@ if df is not None:
     ax.hlines(y=range(len(subset)), xmin=subset['Pre-2021'], xmax=subset['Post-2021'], 
               color='gray', alpha=0.4, linewidth=2)
     
-    ax.scatter(subset['Pre-2021'], range(len(subset)), color='#95A5A6', s=120, zorder=3)
-    colors = ['#E74C3C' if x < 0 else '#27AE60' for x in subset['diff']]
-    ax.scatter(subset['Post-2021'], range(len(subset)), color=colors, s=180, zorder=4)
+    ax.scatter(subset['Pre-2021'], range(len(subset)), color='#95A5A6', marker='o', s=120, zorder=3)
+    for i, val in enumerate(subset['diff']):
+        m_style = 's' if val < 0 else 'o'
+        m_color = '#E74C3C' if val < 0 else '#27AE60'
+        ax.scatter(subset['Post-2021'].iloc[i], i, color=m_color, marker=m_style, s=180, zorder=4)
     
     ax.set_yticks(range(len(subset)))
     ax.set_yticklabels(labels, fontweight='bold', fontsize=11)
     
-    ax.set_title('Реальная экономика (FDI): Эпоха BRI vs. Эпоха Инициатив', fontsize=16, fontweight='bold', pad=20)
+    # ax.set_title('Реальная экономика (FDI): Эпоха BRI vs. Эпоха Инициатив', fontsize=16, fontweight='bold', pad=20)
     ax.set_xlabel('Индекс прямых инвестиций и свопов (0-1)', fontweight='bold')
     
     custom_lines = [
         Line2D([0], [0], marker='o', color='w', markerfacecolor='#95A5A6', markersize=12, label='2013-2020 (BRI)'),
         Line2D([0], [0], marker='o', color='w', markerfacecolor='#27AE60', markersize=12, label='Рост после 2021'),
-        Line2D([0], [0], marker='o', color='w', markerfacecolor='#E74C3C', markersize=12, label='Спад после 2021')
+        Line2D([0], [0], marker='s', color='w', markerfacecolor='#E74C3C', markersize=12, label='Спад после 2021')
     ]
     ax.legend(handles=custom_lines, loc='upper center', bbox_to_anchor=(0.5, -0.08), 
               ncol=3, frameon=True, borderpad=1)
     
     add_source(fig)
-    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
-    plt.savefig('16_Impact_Dumbbell.jpg', dpi=300)
-    print("Сохранен 16_Impact_Dumbbell.jpg (Валидные данные)")
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
+    plt.savefig('Impact_Dumbbell.jpg', dpi=300)
+    print("Сохранен Impact_Dumbbell.jpg")

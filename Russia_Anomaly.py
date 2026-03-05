@@ -44,7 +44,7 @@ if df is not None:
     plt.axvline(0, color='black', lw=1.5, label='Средний уровень соседа')
     plt.axvline(1.5, color='#E67E22', linestyle='--', alpha=0.6) # Порог высокой аномальности
     
-    plt.title('Аномалия России: Насколько РФ уникальна среди соседей КНР?', fontsize=16, fontweight='bold', pad=25)
+    # plt.title('Аномалия России: Насколько РФ уникальна среди соседей КНР?', fontsize=16, fontweight='bold', pad=25)
     plt.xlabel('Z-Score (Отклонение от среднего соседа в единицах сигма)', fontweight='bold')
     plt.ylabel('')
     
@@ -60,7 +60,7 @@ if df is not None:
     add_source(plt.gcf())
     
     # Увеличиваем нижний отступ, чтобы легенда и источник не обрезались
-    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
     
-    plt.savefig('13_Russia_Anomaly_Comp.jpg', dpi=300)
-    print("Сохранен 13_Russia_Anomaly_Comp.jpg (теперь с импортом seaborn)")
+    plt.savefig('Russia_Anomaly_Comp.jpg', dpi=300)
+    print("Сохранен Russia_Anomaly_Comp.jpg")

@@ -38,8 +38,7 @@ def calculate_group_performance():
 
     fig, axes = plt.subplots(2, 2, figsize=(24, 17))
     
-    fig.suptitle("Сравнительный анализ внешнеполитических профилей КНР (2013-2024)\n(Среднегодовые показатели на одну страну в группе)", 
-                 fontsize=28, fontweight='bold', x=0.5, y=0.97)
+    # fig.suptitle("Сравнительный анализ внешнеполитических профилей КНР (2013-2024)\n(Среднегодовые показатели на одну страну в группе)", fontsize=28, fontweight='bold', x=0.5, y=0.97)
 
     legend_handles = []
 
@@ -107,8 +106,8 @@ def calculate_group_performance():
     CUSTOM_SOURCES = "Sources: IMF, AidData, SIPRI, NDU. Values show annual averages per country in each group."
     add_source(fig, CUSTOM_SOURCES, use_default=False)
     
-    plt.subplots_adjust(left=0.08, right=0.92, top=0.84, bottom=0.15, hspace=0.45, wspace=0.2)
-    plt.savefig("20_Initiative_Performance.jpg", dpi=300)
+    plt.subplots_adjust(left=0.08, right=0.92, top=0.92, bottom=0.15, hspace=0.45, wspace=0.2)
+    plt.savefig("Initiative_Performance.jpg", dpi=300)
     plt.close()
 
 if __name__ == "__main__":
