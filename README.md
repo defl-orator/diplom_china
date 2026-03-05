@@ -4,6 +4,7 @@
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Данный репозиторий содержит исходный код на Python для генерации аналитических графиков и диаграмм, использованных в дипломной работе. Цель репозитория — обеспечить **полную прозрачность, достоверность и воспроизводимость** результатов исследования. 
 
