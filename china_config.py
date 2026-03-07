@@ -1,11 +1,45 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.axes as maxes
+import matplotlib.figure as mfig
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from PIL import Image, ImageOps, ImageDraw
 import os
 from sklearn.preprocessing import MinMaxScaler
 import seaborn as sns
+
+
+# 1. Глобальные настройки для элементов, где размер не задан явно
+plt.rcParams.update({
+    'font.size': 14,
+    'axes.labelsize': 16,
+    'xtick.labelsize': 14,
+    'ytick.labelsize': 14,
+    'legend.fontsize': 14,
+    'axes.titlesize': 18
+})
+
+# 2. Перехватываем методы Matplotlib, чтобы автоматически увеличить 
+SCALE_FACTOR = 1.4 
+
+def patch_matplotlib_method(cls, method_name):
+    orig_method = getattr(cls, method_name)
+    def hooked_method(self, *args, **kwargs):
+        if 'fontsize' in kwargs and isinstance(kwargs['fontsize'], (int, float)):
+            kwargs['fontsize'] *= SCALE_FACTOR
+        if 'size' in kwargs and isinstance(kwargs['size'], (int, float)):
+            kwargs['size'] *= SCALE_FACTOR
+        return orig_method(self, *args, **kwargs)
+    setattr(cls, method_name, hooked_method)
+
+for method in['text', 'set_title', 'set_xlabel', 'set_ylabel', 'set_xticklabels', 'set_yticklabels', 'legend']:
+    if hasattr(maxes.Axes, method):
+        patch_matplotlib_method(maxes.Axes, method)
+
+patch_matplotlib_method(mfig.Figure, 'text')
+if hasattr(mfig.Figure, 'legend'):
+    patch_matplotlib_method(mfig.Figure, 'legend')
 
 # === КОНСТАНТЫ ===
 plt.rcParams['font.family'] = 'Arial'
@@ -14,7 +48,7 @@ SOURCE_TEXT = "Source: Mapping China’s Borderlands Dataset (2025)"
 plt.style.use('seaborn-v0_8-whitegrid')
 sns.set_palette("muted")
 
-BORDER_COUNTRIES = [
+BORDER_COUNTRIES =[
     "Afghanistan", "Bhutan", "India", "Kazakhstan", "Kyrgyzstan",
     "Laos", "Mongolia", "Myanmar", "Nepal", "North Korea",
     "Pakistan", "Russia", "Tajikistan", "Vietnam",
@@ -23,10 +57,10 @@ BORDER_COUNTRIES = [
 
 # === ПЕРЕМЕННЫЕ ===
 # Экономика
-GDI_COLS = ['dev_03_fdi_usd', 'dev_01_currency_swap_p_usd']
+GDI_COLS =['dev_03_fdi_usd', 'dev_01_currency_swap_p_usd']
 
 # Безопасность
-GSI_COLS = ['sec_01_arms_transfer_tiv', 'sec_04_joint_exercise_ct', 'sec_03_military_engagement_ct']
+GSI_COLS =['sec_01_arms_transfer_tiv', 'sec_04_joint_exercise_ct', 'sec_03_military_engagement_ct']
 
 # Гуманитарка
 GCI_COLS = ['civ_05_judicial_engagement_ct'] 
@@ -58,11 +92,11 @@ def add_source(fig, extra_sources=None, use_default=True):
         if extra_sources:
             text += f", {extra_sources}"
     else:
-        # Если default отключен, используем только переданные источники
         text = extra_sources if extra_sources else ""
         
     if text:
-        plt.figtext(0.5, 0.015, text, ha="center", fontsize=9, style='italic', color='#444444', wrap=True)
+        # Увеличил размер шрифта источника здесь до 13
+        plt.figtext(0.5, 0.015, text, ha="center", fontsize=13, style='italic', color='#444444', wrap=True)
 
 def get_circular_flag(country_name, zoom=0.13):
     try:
@@ -88,22 +122,16 @@ def load_data():
         df['recipient'] = df['recipient'].str.strip()
         df.columns = [str(c).strip().lower() for c in df.columns]
         
-        # Проверяем наличие колонок и заполняем нулями
         all_cols = GDI_COLS + GSI_COLS + GCI_COLS
         for c in all_cols:
             if c not in df.columns: df[c] = 0
             df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0)
 
-        # Расчет индексов ТОЛЬКО по валидным колонкам
         scaler = MinMaxScaler()
-        # GDI: FDI + Swaps
         df['gdi_idx'] = scaler.fit_transform(df[GDI_COLS].mean(axis=1).values.reshape(-1,1))
-        # GSI: Arms + Exercises + Mil. Engagements
         df['gsi_idx'] = scaler.fit_transform(df[GSI_COLS].mean(axis=1).values.reshape(-1,1))
-        # GCI: Judicial 
         df['gci_idx'] = scaler.fit_transform(df[GCI_COLS].values.reshape(-1,1))
         
-        # Возвращаем ключевые "длинные" колонки для скриптов
         return df, 'sec_01_arms_transfer_tiv', 'dev_03_fdi_usd', 'sec_03_military_engagement_ct'
     except Exception as e:
         print(f"Ошибка в china_config: {e}")

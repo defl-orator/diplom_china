@@ -27,7 +27,7 @@ if df is not None:
     plt.xlabel('Средний объем проектов в год (млн USD)', fontweight='bold')
     plt.ylabel('')
     
-    plt.legend(loc='lower center', bbox_to_anchor=(0.5, -0.15), ncol=2, frameon=True)
+    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12), ncol=2, frameon=True)
     add_source(plt.gcf())
-    plt.tight_layout(rect=[0, 0.1, 1, 0.99])
+    plt.tight_layout(rect=[0, 0.05, 1, 0.99])
     plt.savefig('Digital_Surveillance_Comp.jpg', dpi=300)
