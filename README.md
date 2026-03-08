@@ -12,12 +12,10 @@
 
 ## 🗂 Источники данных
 
-Основной массив данных опирается на **Mapping China’s Borderlands Dataset (2025)**, а также агрегирует статистику из следующих баз:
+Основной массив данных опирается на **Mapping China’s Borderlands Dataset (2025)** (china_data.csv), который агрегирует статистику из следующих баз:
 * **Экономика:** IMF, AidData (FDI, Infrastructure, SEZ)
 * **Безопасность:** SIPRI (Arms Transfers TIV), NDU (Military diplomacy & joint exercises)
 * **Гуманитарное влияние:** AidData, NBR (Healthcare, Confucius Institutes, Judicial engagements)
-
-*Файл `china_data.csv` содержит предобработанный массив, используемый для расчетов в скриптах.*
 
 ## 📈 Основные визуализации и результаты работы алгоритмов
 
@@ -25,7 +23,7 @@
 
 ### 1. Динамика лидерства (Bump Charts)
 Отображает изменение топ-лидеров по объему получаемой от КНР поддержки на разных исторических этапах.
-*Скрипты: `Rank_Invest.py`, `Rank_Arms.py`, `Rank_Humanitarian.py`*
+*Скрипты: `bump_charts.py`, `Rank_Humanitarian.py`*
 
 <p align="center">
   <img src="img/Rank_Invest.jpg" width="80%">
@@ -49,7 +47,7 @@
 
 ### 4. Аномалия России (Z-Score)
 Оценка уникальности положения России по сравнению со «средним» соседом КНР (отклонение в единицах сигма).
-*Скрипт: `Russia_Anomaly_Comp.py`*
+*Скрипт: `Russia_Anomaly.py`*
 
 <p align="center">
   <img src="img/Russia_Anomaly_Comp.jpg" width="80%">
@@ -57,7 +55,7 @@
 
 ### 5. Структурный и географический анализ
 Сравнение стратегий КНР на сухопутных и морских границах, а также консенсус пограничных стран по Глобальным Инициативам КНР.
-*Скрипты: `Land_vs_Sea_Comp.py`, `Initiative_Consensus.py`, `Initiative_Performance.py`*
+*Скрипты: `Land_vs_Sea.py`, `Initiative_Groups.py`, `Initiative_Performance.py`*
 
 <p align="center">
   <img src="img/Land_vs_Sea_Comp.jpg" width="48%">
@@ -72,8 +70,7 @@
  ┣ 📂 img/                       # Сгенерированные графики для README
  ┣ 📜 china_data.csv             # Исходный набор данных
  ┣ 📜 china_config.py            # Общие настройки, цветовые палитры и загрузчик данных
- ┣ 📜 Rank_Invest.py             # Скрипт визуализации (экономика)
- ┣ 📜 Rank_Arms.py               # Скрипт визуализации (оружие)
+ ┣ 📜 charts_bump.py             # Скрипт визуализации (экономика, оружие)
  ┣ 📜 Impact_Dumbbell.py         # Скрипт визуализации (сдвиг парадигмы)
  ┣ ...                           # Остальные скрипты генерации графиков
  ┗ 📜 README.md                  # Описание проекта
