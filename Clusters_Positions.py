@@ -5,11 +5,15 @@ from adjustText import adjust_text
 from sklearn.cluster import KMeans
 from china_config import load_data, add_source, COUNTRY_RU
 
-# Группировка стран
+# Группировка стран актуализирована на основе официальных данных
 GROUPS_MAP = {
-    "SUPPORTED_ALL": ["Bhutan", "Kazakhstan", "Kyrgyzstan", "Laos", "Mongolia", "Myanmar", "Pakistan", "Russia", "Tajikistan", "Malaysia", "Brunei"],
-    "PARTIALLY": ["Nepal", "Vietnam", "Philippines", "Indonesia"],
-    "NOTHING_SAID": ["Afghanistan", "North Korea", "South Korea"],
+    "SUPPORTED_ALL": [
+        "Bhutan", "Kazakhstan", "Kyrgyzstan", "Laos", "Mongolia", 
+        "Myanmar", "Pakistan", "Russia", "Tajikistan", "Malaysia", 
+        "Brunei", "Afghanistan", "North Korea", "Indonesia", "Vietnam"
+    ],
+    "PARTIALLY": ["Nepal", "Philippines"],
+    "NOTHING_SAID": ["South Korea"],
     "NOT_SUPPORTED": ["India", "Japan"]
 }
 
@@ -25,7 +29,7 @@ POS_MARKERS = {
     "SUPPORTED_ALL": "o",   # Круг
     "PARTIALLY": "^",       # Треугольник
     "NOTHING_SAID": "s",    # Квадрат
-    "NOT_SUPPORTED": "p"    # Пятиугольник (pentagon)
+    "NOT_SUPPORTED": "p"    # Пятиугольник
 }
 
 def get_pos_group(name):
@@ -47,7 +51,6 @@ if df is not None:
     stats['recipient_ru'] = stats['recipient'].map(COUNTRY_RU).fillna(stats['recipient'])
 
     fig, ax = plt.subplots(figsize=(16, 11))
-    # fig.suptitle('Кластерный анализ: Дипломатические позиции vs Реальные данные (2021-2024)', fontsize=22, fontweight='bold', x=0.5, y=0.96)
 
     # Отрисовка точек
     for i, row in stats.iterrows():

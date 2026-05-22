@@ -3,11 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from china_config import load_data, add_source
 
-# Группировка стран
+# Группировка стран на основе официальных данных
 GROUPS_MAP = {
-    "ПОЛНАЯ ПОДДЕРЖКА": ["Bhutan", "Kazakhstan", "Kyrgyzstan", "Laos", "Mongolia", "Myanmar", "Pakistan", "Russia", "Tajikistan", "Malaysia", "Brunei"],
-    "ЧАСТИЧНО": ["Nepal", "Vietnam", "Philippines", "Indonesia"],
-    "МОЛЧАНИЕ": ["Afghanistan", "North Korea", "South Korea"],
+    "ПОЛНАЯ ПОДДЕРЖКА": [
+        "Bhutan", "Kazakhstan", "Kyrgyzstan", "Laos", "Mongolia", 
+        "Myanmar", "Pakistan", "Russia", "Tajikistan", "Malaysia", 
+        "Brunei", "Afghanistan", "North Korea", "Indonesia", "Vietnam"
+    ],
+    "ЧАСТИЧНО": ["Nepal", "Philippines"],
+    "МОЛЧАНИЕ": ["South Korea"],
     "ПРОТИВ": ["India", "Japan"]
 }
 
@@ -38,8 +42,6 @@ def calculate_group_performance():
 
     fig, axes = plt.subplots(2, 2, figsize=(24, 17))
     
-    # fig.suptitle("Сравнительный анализ внешнеполитических профилей КНР (2013-2024)\n(Среднегодовые показатели на одну страну в группе)", fontsize=28, fontweight='bold', x=0.5, y=0.97)
-
     legend_handles = []
 
     for i, g_name in enumerate(group_names):
@@ -95,7 +97,6 @@ def calculate_group_performance():
         "• Безопасность: ср. кол-во заказов оружия, встреч и учений (ед. / год)\n"
         "• Гуманитарка: ср. кол-во проектов в медицине, образовании и праве (ед. / год)"
     )
-    # y=0.05 прижимает легенду ниже к краю
     fig.text(0.08, 0.05, metric_info, fontsize=12, style='italic', color='#566573', 
              bbox=dict(boxstyle='round,pad=1', facecolor='#FDFEFE', edgecolor='#D5DBDB', alpha=0.9))
 
