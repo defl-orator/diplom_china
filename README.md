@@ -6,7 +6,7 @@
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**🇷🇺 [Russian Version](#-русская-версия)** | **🇬🇧 [English Version](#-english-version)**
+**🇷🇺 [Russian Version](#russian-version)** | **🇬🇧 [English Version](#-english-version)**
 
 ---
 
@@ -118,6 +118,8 @@ Thesis: "Interaction of the PRC with Border Countries: A Comparative Study withi
 Year: 2026
 
 ---
+
+<a id="russian-version"></a>
 
 ## 🇷🇺 Русская версия
 
