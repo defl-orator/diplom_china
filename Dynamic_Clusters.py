@@ -20,6 +20,8 @@ if df is not None:
     
     stats['name_ru'] = [COUNTRY_RU.get(c, c) for c in stats['recipient']]
 
+    stats['gsi_idx_plot'] = np.log10(stats['gsi_idx'].clip(lower=0.0005))
+
     # 3. Настройка оформления
     fig, ax = plt.subplots(figsize=(15, 10))
     
@@ -45,27 +47,49 @@ if df is not None:
         cluster = row['cluster']
         is_russia = row['recipient'] == 'Russia'
         
-        # ЛОГИКА ФИГУРЫ: Если Россия — пятиугольник ('p'), иначе — фигура кластера
+        # Если Россия — пятиугольник, иначе — фигура кластера
         marker = 'p' if is_russia else markers[cluster]
         color = '#C0392B' if is_russia else colors[cluster]
         
         size = 500 + (row[col_visits] * 120) if is_russia else 400 + (row[col_visits] * 100)
         
-        ax.scatter(row['gdi_idx'], row['gsi_idx'], 
+        ax.scatter(row['gdi_idx'], row['gsi_idx_plot'], 
                    s=size, color=color, marker=marker, 
                    edgecolors='black', alpha=0.85, 
                    zorder=10 if is_russia else 3)
         
-        texts.append(ax.text(row['gdi_idx'], row['gsi_idx'], row['name_ru'], 
+        texts.append(ax.text(row['gdi_idx'], row['gsi_idx_plot'], row['name_ru'], 
                              fontweight='bold' if is_russia else 'normal',
                              fontsize=12 if is_russia else 10))
 
-    adjust_text(texts, arrowprops=dict(arrowstyle='->', color='gray', lw=0.5))
+    # Настройка лимитов и логарифмических делений оси Y в линейном пространстве
+    ax.set_ylim(np.log10(0.0004), np.log10(0.20))
+    ax.set_xlim(-0.05, 0.75)
 
-    # ax.set_title('Кластерный анализ стратегий взаимодействия Китая с соседями (2021-2024)', fontsize=18, fontweight='bold', pad=25)
+    ticks_real = [0.0005, 0.001, 0.003, 0.01, 0.03, 0.10, 0.20]
+    ticks_labels = ['0.000', '0.001', '0.003', '0.010', '0.030', '0.100', '0.200']
+    
+    ax.set_yticks([np.log10(t) for t in ticks_real])
+    ax.set_yticklabels(ticks_labels)
+
+    # Автоматическое распределение подписей
+    adjust_text(texts, 
+                x=stats['gdi_idx'].values,
+                y=stats['gsi_idx_plot'].values,
+                arrowprops=dict(arrowstyle='-', color='gray', lw=0.8, alpha=0.7),
+                expand=(1.4, 1.6),
+                only_move={'text': 'xy+', 'static': 'xy+', 'explode': 'xy+', 'pull': 'xy+'})
+
     ax.set_xlabel('Индекс экономического взаимодействия (FDI + Swaps) →', fontweight='bold')
     ax.set_ylabel('Индекс вовлеченности в безопасность (Оружие + Учения) →', fontweight='bold')
     
+    # сетка и рамки для графиков
+    ax.grid(True, which="both", linestyle=':', color='#E0E0E0', alpha=0.6, zorder=1)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_color('#BDC3C7')
+    ax.spines['bottom'].set_color('#BDC3C7')
+
     # 5. ЛЕГЕНДА
     from matplotlib.lines import Line2D
     legend_elements = [

@@ -50,42 +50,68 @@ if df is not None:
     stats['pos_group'] = stats['recipient'].apply(get_pos_group)
     stats['recipient_ru'] = stats['recipient'].map(COUNTRY_RU).fillna(stats['recipient'])
 
+    stats['gsi_idx_plot'] = np.log10(stats['gsi_idx'].clip(lower=0.0005))
+
     fig, ax = plt.subplots(figsize=(16, 11))
 
-    # Отрисовка точек
+    # 1. Отрисовка точек
     for i, row in stats.iterrows():
         color = POS_COLORS[row['pos_group']]
-        marker = POS_MARKERS[row['pos_group']] # Выбираем фигуру
+        marker = POS_MARKERS[row['pos_group']]
         
-        ax.scatter(row['gdi_idx'], row['gsi_idx'], 
-                   s=750,
+        ax.scatter(row['gdi_idx'], row['gsi_idx_plot'], # Строим по логарифмированной Y-оси
+                   s=650, 
                    c=color, 
-                   marker=marker, # Применяем фигуру
+                   marker=marker, 
                    edgecolors='#2C3E50', 
-                   linewidth=1.5, 
+                   linewidth=1.2, 
                    alpha=0.95, 
                    zorder=3)
 
-    # Подписи стран
-    texts = [ax.text(row['gdi_idx'], row['gsi_idx'], row['recipient_ru'], 
-                     fontweight='bold', fontsize=11) for i, row in stats.iterrows()]
-    adjust_text(texts, arrowprops=dict(arrowstyle='->', color='#BDC3C7', lw=1))
+    # 2. НАСТРОЙКА ОСЕЙ
+    # Задаем лимиты в логарифмических значениях
+    ax.set_ylim(np.log10(0.0004), np.log10(0.20))
+    ax.set_xlim(-0.05, 0.75)
 
-    ax.set_xlabel('Интенсивность экономического взаимодействия (GDI) →', fontweight='bold', fontsize=12)
-    ax.set_ylabel('Интенсивность военного сотрудничества (GSI) →', fontweight='bold', fontsize=12)
-    ax.grid(True, linestyle=':', alpha=0.4)
+    # Задаем деления шкалы Y и маскируем их под реальные значения
+    ticks_real = [0.0005, 0.001, 0.003, 0.01, 0.03, 0.10, 0.20]
+    ticks_labels = ['0.000', '0.001', '0.003', '0.010', '0.030', '0.100', '0.200']
     
-    # ЛЕГЕНДА (с учетом фигур)
+    ax.set_yticks([np.log10(t) for t in ticks_real])
+    ax.set_yticklabels(ticks_labels)
+
+    ax.set_xlabel('Интенсивность экономического взаимодействия (GDI) →', fontweight='bold', fontsize=12, color='#2C3E50')
+    ax.set_ylabel('Интенсивность военного сотрудничества (GSI) →', fontweight='bold', fontsize=12, color='#2C3E50')
+    
+    # Сетка и рамки
+    ax.grid(True, which="both", linestyle=':', color='#E0E0E0', alpha=0.6, zorder=1)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_color('#BDC3C7')
+    ax.spines['bottom'].set_color('#BDC3C7')
+
+    # 3. ПОДПИСИ СТРАН
+    texts = [ax.text(row['gdi_idx'], row['gsi_idx_plot'], row['recipient_ru'], 
+                     fontweight='bold', fontsize=10.5, color='#2C3E50') for i, row in stats.iterrows()]
+    
+    adjust_text(texts, 
+                x=stats['gdi_idx'].values,  
+                y=stats['gsi_idx_plot'].values,  
+                arrowprops=dict(arrowstyle='-', color='#BDC3C7', lw=1, alpha=0.7),
+                expand=(1.4, 1.6), 
+                only_move={'text': 'xy+', 'static': 'xy+', 'explode': 'xy+', 'pull': 'xy+'})
+
+    # 4. ЛЕГЕНДА
     from matplotlib.lines import Line2D
     legend_elements = [
         Line2D([0], [0], marker=POS_MARKERS["SUPPORTED_ALL"], color='w', 
-               markerfacecolor=POS_COLORS["SUPPORTED_ALL"], markersize=14, label='Полная поддержка', markeredgecolor='#2C3E50'),
+               markerfacecolor=POS_COLORS["SUPPORTED_ALL"], markersize=13, label='Полная поддержка', markeredgecolor='#2C3E50'),
         Line2D([0], [0], marker=POS_MARKERS["PARTIALLY"], color='w', 
-               markerfacecolor=POS_COLORS["PARTIALLY"], markersize=14, label='Частичная поддержка', markeredgecolor='#2C3E50'),
+               markerfacecolor=POS_COLORS["PARTIALLY"], markersize=13, label='Частичная поддержка', markeredgecolor='#2C3E50'),
         Line2D([0], [0], marker=POS_MARKERS["NOTHING_SAID"], color='w', 
-               markerfacecolor=POS_COLORS["NOTHING_SAID"], markersize=14, label='Нет позиции / Молчание', markeredgecolor='#2C3E50'),
+               markerfacecolor=POS_COLORS["NOTHING_SAID"], markersize=13, label='Нет позиции / Молчание', markeredgecolor='#2C3E50'),
         Line2D([0], [0], marker=POS_MARKERS["NOT_SUPPORTED"], color='w', 
-               markerfacecolor=POS_COLORS["NOT_SUPPORTED"], markersize=14, label='Не поддержали', markeredgecolor='#2C3E50'),
+               markerfacecolor=POS_COLORS["NOT_SUPPORTED"], markersize=13, label='Не поддержали', markeredgecolor='#2C3E50'),
     ]
 
     ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.08), 
