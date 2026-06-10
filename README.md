@@ -6,11 +6,11 @@
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**🇷🇺 [Russian Version](#-русская-версия)** | **🇬🇧 [English Version](#-english-version)**
+**🇷🇺 [Русская версия]** | **🇬🇧 [English Version]**
 
 ---
 
-## 🇬🇧 English Version {#-english-version}
+## 🇬🇧 English Version
 
 ### 📊 China's Foreign Policy in Borderlands (2005–2024)
 
@@ -119,7 +119,7 @@ Year: 2026
 
 ---
 
-## 🇷🇺 Русская версия {#-русская-версия}
+## 🇷🇺 Русская версия
 
 # 📊 Внешняя политика КНР в приграничных регионах (2005–2024): Визуализация данных
 
