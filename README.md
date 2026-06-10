@@ -117,7 +117,9 @@ Author: Nikolay Masalkin
 Thesis: "Interaction of the PRC with Border Countries: A Comparative Study within the Framework of China's Global Initiatives"
 Year: 2026
 
-🇷🇺 Русская версия
+---
+
+## 🇷🇺 Русская версия {#-русская-версия}
 
 # 📊 Внешняя политика КНР в приграничных регионах (2005–2024): Визуализация данных
 
