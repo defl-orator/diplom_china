@@ -6,7 +6,7 @@
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**🇷🇺 [Русская версия]** | **🇬🇧 [English Version]**
+**🇷🇺 [Russian Version](#-русская-версия)** | **🇬🇧 [English Version](#-english-version)**
 
 ---
 
