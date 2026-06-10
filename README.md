@@ -10,7 +10,7 @@
 
 ---
 
-## 🇬🇧 English Version
+## 🇬🇧 English Version {#-english-version}
 
 ### 📊 China's Foreign Policy in Borderlands (2005–2024)
 
