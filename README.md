@@ -6,9 +6,11 @@
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**🇷🇺 [Russian Version](#russian-version)** | **🇬🇧 [English Version](#-english-version)**
+**🇷🇺 [Russian Version](#russian-version)** | **🇬🇧 [English Version](#english-version)**
 
 ---
+
+<a id="english-version"></a>
 
 ## 🇬🇧 English Version
 
