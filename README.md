@@ -54,7 +54,7 @@ Compares the era of the "Belt and Road Initiative" (2013–2020) with the era of
   <img src="img/Impact_Dumbbell_EN.jpg" width="80%">
 </p>
 
-### 3. Cluster Analysis (K-Means)
+### 3. Cluster Analysis
 Distribution of countries according to their level of economic and military engagement, taking into account their official diplomatic position toward Beijing’s initiatives (marker shape reflects the country’s alignment reaction).
 
 *Scripts: `Clusters.py`, `Clusters_Positions_Shapes.py`*
@@ -128,7 +128,7 @@ This script automatically:
 
 ## 🔬 Scientific Transparency and Verification
 
-- **Statistical Robustness**: All data preprocessing layers (e.g., standard MinMaxScaler normalization, z-score statistical scaling, K-Means clustering parameters) are dynamically calculated inside the open-source scripts directly from the source `china_data.csv`.
+- **Statistical Robustness**: All data preprocessing layers (e.g., standard MinMaxScaler normalization, z-score statistical scaling, clustering parameters) are dynamically calculated inside the open-source scripts directly from the source `china_data.csv`.
 - **Zero Hardcoding**: All legends, axis tick margins, and percentages of change are automatically calculated and plotted. Any modifications in `china_data.csv` will immediately and correctly rebuild all relevant charts.
 
 ---
@@ -188,7 +188,7 @@ This script automatically:
   <img src="img/Impact_Dumbbell_RU.jpg" width="80%">
 </p>
 
-### 3. Кластерный анализ (K-Means)
+### 3. Кластерный анализ
 Распределение стран по уровню экономического и военного вовлечения с учетом их официальной дипломатической позиции (форма маркера отражает реакцию страны на инициативы Пекина).
 
 *Скрипты: `Clusters.py`, `Clusters_Positions_Shapes.py`*
