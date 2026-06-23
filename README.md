@@ -29,7 +29,7 @@ The scripts analyze the tools of China's economic (Global Development Initiative
 The primary dataset is based on the **Mapping China’s Borderlands Dataset (version 1.0, 2025)** (`china_data.csv`). This dataset aggregates official and processed statistics from the following sources:
 
 - **Economy**: International Monetary Fund (IMF), AidData (Foreign Direct Investment, infrastructure projects, Special Economic Zones)
-- **Security**: Stockholm International Peace Research Institute (SIPRI — Arms Transfers Trend Indicator Value), National Defense University (NDU — military diplomacy and joint exercises)
+- **Security**: Stockholm International Pace Research Institute (SIPRI — Arms Transfers Trend Indicator Value), National Defense University (NDU — military diplomacy and joint exercises)
 - **Humanitarian and Normative Influence**: AidData, National Bureau of Asian Research (NBR — healthcare, Confucius Institutes, judicial diplomacy and exchanges)
 
 ## 📈 Main Visualizations and Analysis Results
@@ -42,7 +42,7 @@ Shows changes in the ranking of top recipient countries of Chinese support acros
 *Scripts: `Rank_Invest_and_Rank_Arms.py`, `Rank_Humanitarian.py`*
 
 <p align="center">
-  <img src="charts_results_en/Rank_Invest_EN.jpg" width="80%">
+  <img src="img/Rank_Invest_EN.jpg" width="80%">
 </p>
 
 ### 2. Paradigm Shift (Dumbbell Charts)
@@ -51,7 +51,7 @@ Compares the era of the "Belt and Road Initiative" (2013–2020) with the era of
 *Scripts: `Impact_Dumbbell.py`, `Security_Dumbbell.py`, `Humanitarian_Dumbbell.py`*
 
 <p align="center">
-  <img src="charts_results_en/Impact_Dumbbell_EN.jpg" width="80%">
+  <img src="img/Impact_Dumbbell_EN.jpg" width="80%">
 </p>
 
 ### 3. Cluster Analysis (K-Means)
@@ -60,7 +60,7 @@ Distribution of countries according to their level of economic and military enga
 *Scripts: `Clusters.py`, `Clusters_Positions_Shapes.py`*
 
 <p align="center">
-  <img src="charts_results_en/Clusters_Positions_Shapes_EN.jpg" width="80%">
+  <img src="img/Clusters_Positions_Shapes_EN.jpg" width="80%">
 </p>
 
 ### 4. Russia's Statistical Anomaly (Z-Score)
@@ -69,7 +69,7 @@ Assessment of the uniqueness of Russia's position compared to the "average" neig
 *Script: `Russia_Anomaly_Comp.py`*
 
 <p align="center">
-  <img src="charts_results_en/Russia_Anomaly_Comp_EN.jpg" width="80%">
+  <img src="img/Russia_Anomaly_Comp_EN.jpg" width="80%">
 </p>
 
 ### 5. Structural and Geographical Analysis
@@ -78,8 +78,8 @@ Comparison of China’s strategies on land and maritime borders, as well as the 
 *Scripts: `Land_vs_Sea_Comp.py`, `Initiative_Consensus.py`, `Initiative_Performance.py`*
 
 <p align="center">
-  <img src="charts_results_en/Land_vs_Sea_Comp_EN.jpg" width="48%">
-  <img src="charts_results_en/Initiative_Consensus_EN.jpg" width="48%">
+  <img src="img/Land_vs_Sea_Comp_EN.jpg" width="48%">
+  <img src="img/Initiative_Consensus_EN.jpg" width="48%">
 </p>
 
 ## 🛠 Repository Structure
@@ -87,10 +87,11 @@ Comparison of China’s strategies on land and maritime borders, as well as the 
 ```text
 📦 diplom_china
  ┣ 📂 flags/                     # Country flag icons for circular layouts (.jpg)
+ ┣ 📂 img/                       # Charts for display in README (with _EN/_RU suffixes)
  ┣ 📂 charts_results_en/         # Automatically generated English charts
  ┣ 📂 charts_results_ru/         # Automatically generated Russian charts
  ┣ 📜 china_data.csv             # Primary dataset
- ┣ 📜 china_config.py            # Global settings, bilingual translations, and automated save routing
+ ┣ 📜 china_config.py            # Global configuration, translations, and automated save routing
  ┣ 📜 run_all.py                 # Master pipeline execution script
  ┣ 📜 Russia_Pivot.py            # Localized Russia development pivot chart
  ┣ 📜 Russia_Anomaly_Comp.py     # Russia's relative comparative anomaly Z-score chart
@@ -121,7 +122,7 @@ Execute the master runner pipeline script:
 python run_all.py
 ```
 This script automatically:
-1. Switches Python's working directory to the location of the scripts.
+1. Switches Python's working directory to the location of the scripts [2].
 2. Generates all 14 active analytical charts sequentially.
 3. Automatically routes all files into a structured localized folder (`charts_results_en/` or `charts_results_ru/` with correct language suffixes).
 
@@ -156,7 +157,7 @@ This script automatically:
 
 Основная цель репозитория — обеспечить **полную прозрачность, достоверность и воспроизводимость** результатов академического исследования.
 
-Скрипты анализируют инструменты экономического (Global Development Initiative — GDI), оборонного (Global Security Initiative — GSI) и гуманитарного/цивилизационного (Global Civilization Initiative — GCI) влияния Китая на **20 соседних государств** (14 сухопутных соседей и 6 ключевых морских партнеров).
+Скрипты анализируют инструменты экономического (Global Development Initiative — GDI), оборонного (Global Security Initiative — GSI) и гуманитарного/цивилизационного (Global Civilization Initiative — GCI) влияния Китая на **20 соседних государства** (14 сухопутных соседей и 6 ключевых морских партнеров).
 
 ## 🗂 Источники данных
 
@@ -175,7 +176,7 @@ This script automatically:
 *Скрипты: `Rank_Invest_and_Rank_Arms.py`, `Rank_Humanitarian.py`*
 
 <p align="center">
-  <img src="charts_results_ru/Rank_Invest_RU.jpg" width="80%">
+  <img src="img/Rank_Invest_RU.jpg" width="80%">
 </p>
 
 ### 2. Сдвиг парадигмы (Dumbbell Charts)
@@ -184,7 +185,7 @@ This script automatically:
 *Скрипты: `Impact_Dumbbell.py`, `Security_Dumbbell.py`, `Humanitarian_Dumbbell.py`*
 
 <p align="center">
-  <img src="charts_results_ru/Impact_Dumbbell_RU.jpg" width="80%">
+  <img src="img/Impact_Dumbbell_RU.jpg" width="80%">
 </p>
 
 ### 3. Кластерный анализ (K-Means)
@@ -193,7 +194,7 @@ This script automatically:
 *Скрипты: `Clusters.py`, `Clusters_Positions_Shapes.py`*
 
 <p align="center">
-  <img src="charts_results_ru/Clusters_Positions_Shapes_RU.jpg" width="80%">
+  <img src="img/Clusters_Positions_Shapes_RU.jpg" width="80%">
 </p>
 
 ### 4. Аномалия России (Z-Score)
@@ -202,7 +203,7 @@ This script automatically:
 *Скрипт: `Russia_Anomaly_Comp.py`*
 
 <p align="center">
-  <img src="charts_results_ru/Russia_Anomaly_Comp_RU.jpg" width="80%">
+  <img src="img/Russia_Anomaly_Comp_RU.jpg" width="80%">
 </p>
 
 ### 5. Структурный и географический анализ
@@ -211,8 +212,8 @@ This script automatically:
 *Скрипты: `Land_vs_Sea_Comp.py`, `Initiative_Consensus.py`, `Initiative_Performance.py`*
 
 <p align="center">
-  <img src="charts_results_ru/Land_vs_Sea_Comp_RU.jpg" width="48%">
-  <img src="charts_results_ru/Initiative_Consensus_RU.jpg" width="48%">
+  <img src="img/Land_vs_Sea_Comp_RU.jpg" width="48%">
+  <img src="img/Initiative_Consensus_RU.jpg" width="48%">
 </p>
 
 ## 🛠 Структура репозитория
@@ -220,6 +221,7 @@ This script automatically:
 ```text
 📦 diplom_china
  ┣ 📂 flags/                     # Иконки флагов стран для круговых макетов (.jpg)
+ ┣ 📂 img/                       # Сгенерированные графики для README (с суффиксами _EN/_RU)
  ┣ 📂 charts_results_en/         # Автоматически генерируемые графики на английском языке
  ┣ 📂 charts_results_ru/         # Автоматически генерируемые графики на русском языке
  ┣ 📜 china_data.csv             # Исходный набор данных
