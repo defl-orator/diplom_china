@@ -11,7 +11,7 @@ import seaborn as sns
 
 # === LANGUAGE SETTING ===
 # Choose 'EN' for English or 'RU' for Russian
-LANG = 'RU'
+LANG = 'EN'
 
 # === AUTOMATED OUTPUT DIRECTORY ROUTING ===
 OUTPUT_DIR = f"charts_results_{LANG.lower()}"
