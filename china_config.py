@@ -171,6 +171,9 @@ TEXTS = {
         'gdi_leaders': 'Economic partners (GDI leaders)',
         'gsi_leaders': 'Security partners (GSI leaders)',
         'russia': 'Russia',
+        'both_leaders': 'Comprehensive Leaders (Top-5 GDI + GSI)',
+        'gdi_leaders_top': 'Economic Leaders (Top-5 GDI)',
+        'gsi_leaders_top': 'Security Leaders (Top-5 GSI)',
     },
     'RU': {
         'supported_all': 'ПОЛНАЯ ПОДДЕРЖКА',
@@ -215,6 +218,9 @@ TEXTS = {
         'gdi_leaders': 'Экономические партнеры (GDI лидеры)',
         'gsi_leaders': 'Партнеры в сфере безопасности (GSI лидеры)',
         'russia': 'Россия',
+        'both_leaders': 'Лидеры в обеих сферах (Топ-5 GDI + GSI)',
+        'gdi_leaders_top': 'Лидеры экономики (Топ-5 GDI)',
+        'gsi_leaders_top': 'Лидеры безопасности (Топ-5 GSI)',
     }
 }
 
@@ -295,6 +301,7 @@ def load_data():
             df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0)
 
         scaler = MinMaxScaler()
+        
         df['gdi_idx'] = scaler.fit_transform(df[GDI_COLS].mean(axis=1).values.reshape(-1,1))
         df['gsi_idx'] = scaler.fit_transform(df[GSI_COLS].mean(axis=1).values.reshape(-1,1))
         df['gci_idx'] = scaler.fit_transform(df[GCI_COLS].values.reshape(-1,1))

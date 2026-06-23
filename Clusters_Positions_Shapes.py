@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from adjustText import adjust_text
-from sklearn.cluster import KMeans
 from china_config import load_data, add_source, get_country, get_text, LANG
 
 GROUPS_MAP = {
@@ -42,14 +41,12 @@ if df is not None:
     recent_df = df[df['year'] >= 2021]
     stats = recent_df.groupby('recipient')[['gdi_idx', 'gsi_idx']].mean().reset_index()
     
-    kmeans = KMeans(n_clusters=3, random_state=42, n_init=10).fit(stats[['gdi_idx', 'gsi_idx']])
-    stats['cluster'] = kmeans.labels_
     stats['pos_group'] = stats['recipient'].apply(get_pos_group)
     stats['recipient_localized'] = stats['recipient'].apply(get_country)
 
     stats['gsi_idx_plot'] = np.log10(stats['gsi_idx'].clip(lower=0.0005))
 
-    fig, ax = plt.subplots(figsize=(16, 11))
+    fig, ax = plt.subplots(figsize=(19, 11))
 
     for i, row in stats.iterrows():
         color = POS_COLORS[row['pos_group']]
@@ -104,13 +101,53 @@ if df is not None:
                markerfacecolor=POS_COLORS["NOT_SUPPORTED"], markersize=13, label=get_text('not_supported'), markeredgecolor='#2C3E50'),
     ]
 
-    ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.08), 
+    ax.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.10), 
               ncol=4, frameon=True, fontsize=11, borderpad=1)
+
+    if LANG == 'EN':
+        info_text = (
+            "METRIC COMPOSITION:\n\n"
+            "• ECONOMY (GDI):\n"
+            "  Direct Investment (FDI)\n"
+            "  and Currency Swaps.\n\n"
+            "• SECURITY (GSI):\n"
+            "  Arms Transfers (SIPRI TIV),\n"
+            "  Joint Military Drills, and\n"
+            "  Military Diplomatic Visits.\n\n"
+            "All indexes are normalized\n"
+            "to [0, 1] range.\n\n"
+            "MAP GRAPH STYLING:\n"
+            "Marker colors and shapes reflect\n"
+            "the countries' official stances\n"
+            "towards China's Initiatives."
+        )
+    else:
+        info_text = (
+            "СОСТАВ МЕТРИК:\n\n"
+            "• ЭКОНОМИКА (GDI):\n"
+            "  Прямые инвестиции (FDI)\n"
+            "  и валютные свопы.\n\n"
+            "• БЕЗОПАСНОСТЬ (GSI):\n"
+            "  Торговля оружием (TIV),\n"
+            "  совместные учения и\n"
+            "  визиты военной дипломатии.\n\n"
+            "Все индексы нормализованы\n"
+            "к единой шкале [0; 1].\n\n"
+            "СТИЛЬ ОТОБРАЖЕНИЯ:\n"
+            "Форма и цвет маркеров отражают\n"
+            "официальную дипломатическую\n"
+            "позицию стран относительно\n"
+            "инициатив Пекина."
+        )
+
+    ax.text(1.03, 0.5, info_text, transform=ax.transAxes, va='center', ha='left', 
+            fontsize=10.5, fontweight='bold', color='#2C3E50',
+            bbox=dict(boxstyle='round,pad=1.0', facecolor='#F8F9F9', edgecolor='#D5DBDB', alpha=0.95), zorder=7)
 
     CUSTOM_SOURCES = "Sources: Analysis of IMF, AidData, SIPRI and Official Statements (2021-2024)."
     add_source(fig, CUSTOM_SOURCES, use_default=False)
     
-    plt.subplots_adjust(bottom=0.18, top=0.98, left=0.1, right=0.9)
+    plt.subplots_adjust(bottom=0.20, top=0.98, left=0.1, right=0.76)
     
     filename = f'Clusters_Positions_Shapes_{LANG}.jpg'
     plt.savefig(filename, dpi=300)
