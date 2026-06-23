@@ -34,91 +34,107 @@ The primary dataset is based on the **Mapping China’s Borderlands Dataset (ver
 
 ## 📈 Main Visualizations and Analysis Results
 
-The code is divided into modules according to the type of analysis. Running the scripts generates ready-to-use images for insertion into academic work.
+The codebase is divided into targeted analysis modules. Running the generation pipeline produces high-resolution vector and raster charts structured cleanly by language settings.
 
 ### 1. Leadership Dynamics (Bump Charts)
 Shows changes in the ranking of top recipient countries of Chinese support across different historical periods.
 
-*Scripts: `bump_charts.py`, `Rank_Humanitarian.py`*
+*Scripts: `Rank_Invest_and_Rank_Arms.py`, `Rank_Humanitarian.py`*
 
 <p align="center">
-  <img src="img/Rank_Invest.jpg" width="80%">
+  <img src="charts_results_en/Rank_Invest_EN.jpg" width="80%">
 </p>
 
 ### 2. Paradigm Shift (Dumbbell Charts)
-Compares the era of the "Belt and Road Initiative" (2013–2020) with the era of Global Initiatives (2021 onwards). Green circles indicate growth, red squares indicate decline.
+Compares the era of the "Belt and Road Initiative" (2013–2020) with the era of Global Initiatives (2021 onwards). Green markers indicate growth, red markers indicate decline.
 
 *Scripts: `Impact_Dumbbell.py`, `Security_Dumbbell.py`, `Humanitarian_Dumbbell.py`*
 
 <p align="center">
-  <img src="img/Impact_Dumbbell.jpg" width="80%">
+  <img src="charts_results_en/Impact_Dumbbell_EN.jpg" width="80%">
 </p>
 
 ### 3. Cluster Analysis (K-Means)
-Distribution of countries according to their level of economic and military engagement, taking into account their official diplomatic position toward Beijing’s initiatives (marker shape reflects the country’s reaction).
+Distribution of countries according to their level of economic and military engagement, taking into account their official diplomatic position toward Beijing’s initiatives (marker shape reflects the country’s alignment reaction).
 
 *Scripts: `Clusters.py`, `Clusters_Positions_Shapes.py`*
 
 <p align="center">
-  <img src="img/Clusters_Positions_Shapes.jpg" width="80%">
+  <img src="charts_results_en/Clusters_Positions_Shapes_EN.jpg" width="80%">
 </p>
 
 ### 4. Russia's Statistical Anomaly (Z-Score)
-Assessment of the uniqueness of Russia's position compared to the "average" neighbor of China (measured in standard deviations).
+Assessment of the uniqueness of Russia's position compared to the "average" neighbor of China (measured in standard deviations to evaluate relative divergence trends).
 
-*Script: `Russia_Anomaly.py`*
+*Script: `Russia_Anomaly_Comp.py`*
 
 <p align="center">
-  <img src="img/Russia_Anomaly_Comp.jpg" width="80%">
+  <img src="charts_results_en/Russia_Anomaly_Comp_EN.jpg" width="80%">
 </p>
 
 ### 5. Structural and Geographical Analysis
-Comparison of China’s strategies on land and maritime borders, as well as the level of consensus among border countries regarding China’s Global Initiatives.
+Comparison of China’s strategies on land and maritime borders, as well as the level of political consensus among border countries regarding China’s Global Initiatives.
 
-*Scripts: `Land_vs_Sea.py`, `Initiative_Groups.py`, `Initiative_Performance.py`*
+*Scripts: `Land_vs_Sea_Comp.py`, `Initiative_Consensus.py`, `Initiative_Performance.py`*
 
 <p align="center">
-  <img src="img/Land_vs_Sea_Comp.jpg" width="48%">
-  <img src="img/Initiative_Consensus.jpg" width="48%">
+  <img src="charts_results_en/Land_vs_Sea_Comp_EN.jpg" width="48%">
+  <img src="charts_results_en/Initiative_Consensus_EN.jpg" width="48%">
 </p>
 
 ## 🛠 Repository Structure
 
 ```text
 📦 diplom_china
- ┣ 📂 flags/                 # Country flag icons for charts (.jpg)
- ┣ 📂 img/                   # Generated charts for README
- ┣ 📜 china_data.csv         # Main dataset
- ┣ 📜 china_config.py        # Common settings, color palettes and data loader
- ┣ 📜 charts_bump.py         # Bump charts visualization
- ┣ 📜 Impact_Dumbbell.py     # Dumbbell charts
- ┣ 📜 Clusters.py            # K-Means clustering
- ┣ 📜 Russia_Anomaly.py      # Z-score analysis for Russia
- ┣ ...                       # Other visualization scripts
- ┗ 📜 README.md
+ ┣ 📂 flags/                     # Country flag icons for circular layouts (.jpg)
+ ┣ 📂 charts_results_en/         # Automatically generated English charts
+ ┣ 📂 charts_results_ru/         # Automatically generated Russian charts
+ ┣ 📜 china_data.csv             # Primary dataset
+ ┣ 📜 china_config.py            # Global settings, bilingual translations, and automated save routing
+ ┣ 📜 run_all.py                 # Master pipeline execution script
+ ┣ 📜 Russia_Pivot.py            # Localized Russia development pivot chart
+ ┣ 📜 Russia_Anomaly_Comp.py     # Russia's relative comparative anomaly Z-score chart
+ ┣ 📜 Security_Dumbbell.py       # Security paradigm shift dumbbell chart
+ ┣ 📜 Initiative_Consensus.py    # Group support circular consensus chart
+ ┣ ...                           # Other individual chart scripts
+ ┗ 📜 README.md                  # This documentation
 ```
-🚀 How to Reproduce the Results
-Anyone can run the code locally to verify the calculations and charts.
-1. Prepare the Environment
-Make sure you have Python 3.8 or higher installed. Then install the required packages:
-Bashpip install -r requirements.txt
-2. Clone the Repository
-Bashgit clone https://github.com/defl-orator/diplom_china.git
-cd diplom_china
-3. Run the Scripts
-For example, to generate the economic influence paradigm shift chart:
-Bashpython Impact_Dumbbell.py
-After execution, the corresponding image file (e.g., Impact_Dumbbell.jpg) will appear in the root folder.
-🔬 Reproducibility and Verification
 
-All calculation logic (MinMaxScaler normalization, period aggregation, KMeans clustering) is open and located inside the scripts.
-There is no hardcoding — all charts are generated dynamically from china_data.csv.
-Any changes in the source data will be automatically reflected in the generated visualizations.
+## 🚀 How to Reproduce All Results
 
+The entire visualization pipeline is designed for fully automated reproduction.
 
-Author: Nikolay Masalkin
-Thesis: "Interaction of the PRC with Border Countries: A Comparative Study within the Framework of China's Global Initiatives"
-Year: 2026
+### 1. Prepare the Environment
+Make sure you have Python 3.8 or higher installed. Then install the required dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Configure Your Language Settings
+Open `china_config.py` in any text editor and edit the `LANG` global variable at the top of the file:
+* Set `LANG = 'EN'` for English.
+* Set `LANG = 'RU'` for Russian.
+
+### 3. Generate All Charts with One Command
+Execute the master runner pipeline script:
+```bash
+python run_all.py
+```
+This script automatically:
+1. Switches Python's working directory to the location of the scripts.
+2. Generates all 14 active analytical charts sequentially.
+3. Automatically routes all files into a structured localized folder (`charts_results_en/` or `charts_results_ru/` with correct language suffixes).
+
+## 🔬 Scientific Transparency and Verification
+
+- **Statistical Robustness**: All data preprocessing layers (e.g., standard MinMaxScaler normalization, z-score statistical scaling, K-Means clustering parameters) are dynamically calculated inside the open-source scripts directly from the source `china_data.csv`.
+- **Zero Hardcoding**: All legends, axis tick margins, and percentages of change are automatically calculated and plotted. Any modifications in `china_data.csv` will immediately and correctly rebuild all relevant charts.
+
+---
+
+**Author:** Nikolay Masalkin  
+**Thesis:** "Interaction of the People's Republic of China with Border Countries: A Comparative Study within the Framework of China's Global Initiatives"  
+**Year:** 2026
 
 ---
 
@@ -134,110 +150,121 @@ Year: 2026
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-F7931E)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Данный репозиторий содержит исходный код на Python для генерации аналитических графиков и диаграмм, использованных в дипломной работе. Цель репозитория — обеспечить **полную прозрачность, достоверность и воспроизводимость** результатов исследования. 
+Данный репозиторий содержит исходный код на Python для генерации аналитических графиков и диаграмм, использованных в бакалаврской дипломной работе на тему:
 
-Скрипты анализируют инструменты экономического (GDI), связанного с безопасностью (GSI) и гуманитарного (GCI) влияния Китая на 20 соседних государств (сухопутные и морские границы).
+**«Взаимодействие КНР с пограничными странами: сравнительное исследование в рамках Глобальных инициатив Китая»**.
+
+Основная цель репозитория — обеспечить **полную прозрачность, достоверность и воспроизводимость** результатов академического исследования.
+
+Скрипты анализируют инструменты экономического (Global Development Initiative — GDI), оборонного (Global Security Initiative — GSI) и гуманитарного/цивилизационного (Global Civilization Initiative — GCI) влияния Китая на **20 соседних государств** (14 сухопутных соседей и 6 ключевых морских партнеров).
 
 ## 🗂 Источники данных
 
-Основной массив данных опирается на **Mapping China’s Borderlands Dataset (2025)** (china_data.csv), который агрегирует статистику из следующих баз:
-* **Экономика:** IMF, AidData (FDI, Infrastructure, SEZ)
-* **Безопасность:** SIPRI (Arms Transfers TIV), NDU (Military diplomacy & joint exercises)
-* **Гуманитарное влияние:** AidData, NBR (Healthcare, Confucius Institutes, Judicial engagements)
+Основной массив данных опирается на базу **Mapping China’s Borderlands Dataset (версия 1.0, 2025)** (`china_data.csv`), объединяющую проверенную статистику из следующих мировых источников:
+- **Экономика**: IMF, AidData (объемы прямых инвестиций, инфраструктурных проектов, запуск особых экономических зон)
+- **Безопасность**: SIPRI (Arms Transfers Trend Indicator Value — импорт вооружений), National Defense University (NDU — частота военных учений и визитов военной дипломатии)
+- **Гуманитарное влияние**: AidData, National Bureau of Asian Research (NBR — медицинские проекты, институты Конфуция, судебная дипломатия)
 
 ## 📈 Основные визуализации и результаты работы алгоритмов
 
-Код разделен на модули по типу анализа. При запуске скриптов генерируются изображения, готовые к вставке в научную работу. Ниже представлены примеры работы кода.
+Программный код разделен на узкоспециализированные аналитические модули. При запуске пайплайна генерируются изображения высокого разрешения, отсортированные по выбранным языковым настройкам.
 
 ### 1. Динамика лидерства (Bump Charts)
 Отображает изменение топ-лидеров по объему получаемой от КНР поддержки на разных исторических этапах.
-*Скрипты: `bump_charts.py`, `Rank_Humanitarian.py`*
+
+*Скрипты: `Rank_Invest_and_Rank_Arms.py`, `Rank_Humanitarian.py`*
 
 <p align="center">
-  <img src="img/Rank_Invest.jpg" width="80%">
+  <img src="charts_results_ru/Rank_Invest_RU.jpg" width="80%">
 </p>
 
 ### 2. Сдвиг парадигмы (Dumbbell Charts)
 Сравнение эпохи инициативы «Один пояс, один путь» (2013–2020) и эпохи Глобальных Инициатив Си Цзиньпина (2021+). Рост показателей отмечен **зелеными кругами**, спад — **красными квадратами**.
+
 *Скрипты: `Impact_Dumbbell.py`, `Security_Dumbbell.py`, `Humanitarian_Dumbbell.py`*
 
 <p align="center">
-  <img src="img/Impact_Dumbbell.jpg" width="80%">
+  <img src="charts_results_ru/Impact_Dumbbell_RU.jpg" width="80%">
 </p>
 
 ### 3. Кластерный анализ (K-Means)
 Распределение стран по уровню экономического и военного вовлечения с учетом их официальной дипломатической позиции (форма маркера отражает реакцию страны на инициативы Пекина).
+
 *Скрипты: `Clusters.py`, `Clusters_Positions_Shapes.py`*
 
 <p align="center">
-  <img src="img/Clusters_Positions_Shapes.jpg" width="80%">
+  <img src="charts_results_ru/Clusters_Positions_Shapes_RU.jpg" width="80%">
 </p>
 
 ### 4. Аномалия России (Z-Score)
-Оценка уникальности положения России по сравнению со «средним» соседом КНР (отклонение в единицах сигма).
-*Скрипт: `Russia_Anomaly.py`*
+Оценка уникальности положения России по сравнению со «средним» соседом КНР (отклонение в единицах сигма для выявления относительных расхождений в динамике).
+
+*Скрипт: `Russia_Anomaly_Comp.py`*
 
 <p align="center">
-  <img src="img/Russia_Anomaly_Comp.jpg" width="80%">
+  <img src="charts_results_ru/Russia_Anomaly_Comp_RU.jpg" width="80%">
 </p>
 
 ### 5. Структурный и географический анализ
-Сравнение стратегий КНР на сухопутных и морских границах, а также консенсус пограничных стран по Глобальным Инициативам КНР.
-*Скрипты: `Land_vs_Sea.py`, `Initiative_Groups.py`, `Initiative_Performance.py`*
+Сравнение стратегий КНР на сухопутных и морских границах, а также политический консенсус приграничных стран по Глобальным Инициативам КНР.
+
+*Скрипты: `Land_vs_Sea_Comp.py`, `Initiative_Consensus.py`, `Initiative_Performance.py`*
 
 <p align="center">
-  <img src="img/Land_vs_Sea_Comp.jpg" width="48%">
-  <img src="img/Initiative_Consensus.jpg" width="48%">
+  <img src="charts_results_ru/Land_vs_Sea_Comp_RU.jpg" width="48%">
+  <img src="charts_results_ru/Initiative_Consensus_RU.jpg" width="48%">
 </p>
 
 ## 🛠 Структура репозитория
 
 ```text
 📦 diplom_china
- ┣ 📂 flags/                     # Иконки флагов стран для графиков (.jpg)
- ┣ 📂 img/                       # Сгенерированные графики для README
+ ┣ 📂 flags/                     # Иконки флагов стран для круговых макетов (.jpg)
+ ┣ 📂 charts_results_en/         # Автоматически генерируемые графики на английском языке
+ ┣ 📂 charts_results_ru/         # Автоматически генерируемые графики на русском языке
  ┣ 📜 china_data.csv             # Исходный набор данных
- ┣ 📜 china_config.py            # Общие настройки, цветовые палитры и загрузчик данных
- ┣ 📜 charts_bump.py             # Скрипт визуализации (экономика, оружие)
- ┣ 📜 Impact_Dumbbell.py         # Скрипт визуализации (сдвиг парадигмы)
+ ┣ 📜 china_config.py            # Настройки, переводы и перехватчик путей сохранения
+ ┣ 📜 run_all.py                 # Мастер-скрипт пакетного запуска
+ ┣ 📜 Russia_Pivot.py            # Скрипт визуализации (трансформация позиций РФ)
+ ┣ 📜 Russia_Anomaly_Comp.py     # Скрипт расчета Z-Score аномальности РФ
+ ┣ 📜 Security_Dumbbell.py       # Скрипт сравнения оборонных контактов КНР
+ ┣ 📜 Initiative_Consensus.py    # Скрипт визуализации групп дипломатической поддержки
  ┣ ...                           # Остальные скрипты генерации графиков
- ┗ 📜 README.md                  # Описание проекта
+ ┗ 📜 README.md                  # Данная документация
 ```
 
-## 🚀 Инструкция по запуску (Воспроизведение графиков)
+## 🚀 Инструкция по пакетному запуску (Воспроизведение)
 
-Любой желающий может запустить код локально, чтобы проверить достоверность расчетов и графиков.
+Процесс воссоздания всех аналитических графиков полностью автоматизирован.
 
 ### 1. Подготовка окружения
 Убедитесь, что у вас установлен Python (версии 3.8 или выше). Затем установите необходимые зависимости:
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Клонирование репозитория
+### 2. Выбор целевого языка
+Откройте файл `china_config.py` в любом текстовом редакторе и измените переменную `LANG` в самом начале файла:
+* Задайте `LANG = 'RU'` для вывода графиков на русском языке.
+* Задайте `LANG = 'EN'` для вывода графиков на английском языке.
+
+### 3. Генерация всех графиков одной командой
+Запустите мастер-скрипт автоматической сборки:
 ```bash
-git clone https://github.com/defl-orator/diplom_china.git
-cd diplom_china
+python run_all.py
 ```
+Этот скрипт самостоятельно:
+1. Переключит рабочую директорию процесса на папку со скриптами [2].
+2. Последовательно выполнит расчеты и визуализацию всех 14 активных графиков.
+3. Отсортирует полученные файлы в нужную языковую папку (`charts_results_en/` или `charts_results_ru/`) с соответствующими суффиксами языков.
 
-### 3. Запуск скриптов
-Запустите любой из интересующих вас скриптов. Например, для генерации графика изменения экономического влияния:
+## 🔬 Проверка достоверности расчетов (Для рецензентов)
 
-```bash
-python Impact_Dumbbell.py
-```
-
-После выполнения скрипта в корневой папке появится актуальный файл (например, `Impact_Dumbbell.jpg`), построенный на основе текущих данных `china_data.csv`.
-
-## 🔬 Проверка достоверности (Для проверяющих)
-
-* **Алгоритмы**: Вся логика расчета индексов (нормализация `MinMaxScaler`), агрегации по периодам и кластеризации (`KMeans`) открыта и находится внутри соответствующих скриптов.
-* **Отсутствие хардкода**: Графики строятся динамически на основе данных из `china_data.csv`. Изменение данных в таблице автоматически отразится на графиках.
-* **Аннотации**: Данные на графиках с «гантелями» и гистограммах автоматически вычисляют процентное изменение между периодами.
+- **Статистическая строгость**: Вся математическая логика (нормализация `MinMaxScaler`, расчет средних по периодам, вычисление отклонений `z-score` и кластеризация `KMeans`) выполняется прозрачно прямо внутри скриптов на основе данных `china_data.csv`.
+- **Отсутствие статического хардкода**: Координаты, усы погрешностей, лимиты шкал и расчет процентов изменений вычисляются динамически. Любые точечные изменения в таблице `china_data.csv` автоматически перестроят графики без искажения структуры [13].
 
 ---
 
 **Автор:** Николай Масалкин  
-**Исследование:** «ВЗАИМОДЕЙСТВИЕ КНР С ПОГРАНИЧНЫМИ СТРАНАМИ: СРАВНИТЕЛЬНОЕ ИССЛЕДОВАНИЕ В РАМКАХ ГЛОБАЛЬНЫХ ИНИЦИАТИВ КИТАЯ»  
+**Исследование:** «Взаимодействие КНР с пограничными странами: сравнительное исследование в рамках Глобальных инициатив Китая»  
 **Год:** 2026
