@@ -1,12 +1,11 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.lines import Line2D
-from china_config import load_data, add_source, COUNTRY_RU
+from china_config import load_data, add_source, get_country, get_text, LANG
 
 df, _, _, _ = load_data()
 
 if df is not None:
-    
     df_bri = df[(df['year'] >= 2013) & (df['year'] <= 2020)].groupby('recipient')['gdi_idx'].mean()
     df_new = df[df['year'] >= 2021].groupby('recipient')['gdi_idx'].mean()
     
@@ -15,7 +14,7 @@ if df is not None:
     comp = comp.sort_values('diff', ascending=True)
     
     subset = pd.concat([comp.head(5), comp.tail(10)])
-    labels = [COUNTRY_RU.get(c, c) for c in subset.index]
+    labels = [get_country(c) for c in subset.index]
     
     fig, ax = plt.subplots(figsize=(13, 9))
     
@@ -31,18 +30,19 @@ if df is not None:
     ax.set_yticks(range(len(subset)))
     ax.set_yticklabels(labels, fontweight='bold', fontsize=11)
     
-    # ax.set_title('Реальная экономика (FDI): Эпоха BRI vs. Эпоха Инициатив', fontsize=16, fontweight='bold', pad=20)
-    ax.set_xlabel('Индекс прямых инвестиций и свопов (0-1)', fontweight='bold')
+    ax.set_xlabel('Index of FDI & Swaps (0-1)', fontweight='bold')
     
     custom_lines = [
-        Line2D([0], [0], marker='o', color='w', markerfacecolor='#95A5A6', markersize=12, label='2013-2020 (BRI)'),
-        Line2D([0], [0], marker='o', color='w', markerfacecolor='#27AE60', markersize=12, label='Рост после 2021'),
-        Line2D([0], [0], marker='s', color='w', markerfacecolor='#E74C3C', markersize=12, label='Спад после 2021')
+        Line2D([0], [0], marker='o', color='w', markerfacecolor='#95A5A6', markersize=12, label=get_text('bri_epoch')),
+        Line2D([0], [0], marker='o', color='w', markerfacecolor='#27AE60', markersize=12, label=get_text('growth_activity')),
+        Line2D([0], [0], marker='s', color='w', markerfacecolor='#E74C3C', markersize=12, label=get_text('decline_activity'))
     ]
     ax.legend(handles=custom_lines, loc='upper center', bbox_to_anchor=(0.5, -0.08), 
               ncol=3, frameon=True, borderpad=1)
     
     add_source(fig)
     plt.tight_layout(rect=[0, 0.05, 1, 0.99])
-    plt.savefig('Impact_Dumbbell.jpg', dpi=300)
-    print("Сохранен Impact_Dumbbell.jpg")
+    
+    filename = f'Impact_Dumbbell_{LANG}.jpg'
+    plt.savefig(filename, dpi=300)
+    print(f"Saved {filename}")
